@@ -23,9 +23,9 @@ pattern = FilePattern(make_url, concat_dim)
 pattern_pruned = prune_pattern(pattern)
 
 # FIXME[2]: Dynamic assignment of `target_path` (and `cache_path`)?
-from tempfile import TemporaryDirectory
-td = TemporaryDirectory()
-target_path = td.name + "/output.zarr"
+# from tempfile import TemporaryDirectory
+# td = TemporaryDirectory()
+target_path = "output.zarr"
 
 recipe = (
     # FIXME[1]: `pattern_pruned`
