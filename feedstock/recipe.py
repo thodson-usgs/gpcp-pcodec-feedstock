@@ -18,20 +18,12 @@ concat_dim = ConcatDim("time", dates, nitems_per_file=1)
 pattern = FilePattern(make_url, concat_dim)
 
 
-# FIXME[2]: Dynamic assignment of `target_path` (and `cache_path`)?
-# from tempfile import TemporaryDirectory
-# td = TemporaryDirectory()
-target_path = "output.zarr"
 
 recipe = (
-    # FIXME[1]: `pattern_pruned`
     beam.Create(pattern.items())
     | OpenURLWithFSSpec()
-    # FIXME[1]: `pattern_pruned`
     | OpenWithXarray(file_type=pattern.file_type)
     | StoreToZarr(
-        # FIXME[2]: `target_path`
-        target_url=target_path,
         combine_dims=pattern.combine_dim_keys,
     )
 )
