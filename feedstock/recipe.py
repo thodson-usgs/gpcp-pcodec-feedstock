@@ -24,6 +24,7 @@ recipe = (
     | OpenURLWithFSSpec()
     | OpenWithXarray(file_type=pattern.file_type)
     | StoreToZarr(
+        store_name="gpcp",
         combine_dims=pattern.combine_dim_keys,
     )
 )
