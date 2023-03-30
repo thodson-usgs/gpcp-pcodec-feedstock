@@ -22,7 +22,7 @@ pattern = FilePattern(make_url, concat_dim)
 recipe = (
     beam.Create(pattern.items())
     | OpenURLWithFSSpec()
-    | OpenWithXarray(file_type=pattern.file_type)
+    | OpenWithXarray(file_type=pattern.file_type, xarray_open_kwargs={"decode_coords": "all"})
     | StoreToZarr(
         store_name="gpcp",
         combine_dims=pattern.combine_dim_keys,
